@@ -66,6 +66,7 @@ public class player2Dcontrol : MonoBehaviour
 
 
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        animator.SetFloat("Speed",Mathf.Abs(horizontalMove));
 
 
 
@@ -78,6 +79,7 @@ public class player2Dcontrol : MonoBehaviour
         {
 
             jump = true;
+            animator.SetBool("IsJumping",true);
 
             //  animator.SetBool("IsJumping", true); 
 
@@ -111,14 +113,14 @@ public class player2Dcontrol : MonoBehaviour
 
     {
 
-        // animator.SetBool("IsJumping", false); 
+         animator.SetBool("IsJumping", false); 
 
     }
     public void OnCrouching(bool isCrouching)
 
     {
 
-        //   animator.SetBool("IsCrouching", isCrouching); 
+           animator.SetBool("IsCrouching", isCrouching); 
 
     }
 
