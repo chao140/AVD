@@ -6,6 +6,8 @@ public class weapon : MonoBehaviour
 {
     public Transform fire;
     public GameObject bulletPrefab;
+    public int damage = 40;
+    public GameObject impactEffect;
 
     // Update is called once per frame
     void Update()
@@ -17,6 +19,17 @@ public class weapon : MonoBehaviour
     }
     void Shoot()
     {
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        RaycastHit2D hitInfo = Physics2D.Raycast(fire.position, fire.right);
+
+        if (hitInfo)
+        {
+            Enemy Enemy = hitInfo.transform.GetComponent<Enemy>();
+            if(Enemy != null)
+            {
+                Enemy.TakeDamage(damage);
+            }
+            Instantiate(impactEffect, hitInfo.point, Quaternion.identity);
+        }
+       // Instantiate(bulletPrefab, fire.position, fire.rotation);
     }
 }
