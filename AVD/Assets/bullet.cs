@@ -10,13 +10,19 @@ public class bullet : MonoBehaviour
 //    public GameObject impactEffect;
     
     void Start(){
-        rb.velocity = transform.right * speed;
+//        Debug.Log(transform.name);
+        GameObject player = GameObject.Find("PLAYER");
+        rb.velocity = player.transform.right * speed;
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        Debug.Log(hitInfo.name);
+//        Debug.Log(hitInfo.name);
 //       Debug.Log(rb.velocity);
+        if((hitInfo.name).Equals("PLAYER")) {
+            return;
+        }
+
         
         Enemy enemy = hitInfo.GetComponent<Enemy>();
         
@@ -25,6 +31,7 @@ public class bullet : MonoBehaviour
             enemy.TakeDamage(damage);
         }
 //        Instantiate(impactEffect, transform.position, transform.rotation);
-//        Destroy(gameObject);
+        Destroy(gameObject);
+//        Debug.Log(gameObject.name);
     }
 }
