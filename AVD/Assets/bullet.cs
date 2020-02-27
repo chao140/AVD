@@ -7,7 +7,7 @@ public class bullet : MonoBehaviour
     public float speed = 20f;
     public int damage = 40;
     public Rigidbody2D rb;
-    public GameObject impactEffect;
+//    public GameObject impactEffect;
     
     void Start(){
         rb.velocity = transform.right * speed;
@@ -15,15 +15,16 @@ public class bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-       // Debug.Log(hitInfo.name);
+        Debug.Log(hitInfo.name);
+//       Debug.Log(rb.velocity);
         
-        Enemy Enemy = hitInfo.GetComponent<Enemy>();
+        Enemy enemy = hitInfo.GetComponent<Enemy>();
         
-        if (Enemy != null)
+        if (enemy != null)
         {
-            Enemy.TakeDamage(damage);
+            enemy.TakeDamage(damage);
         }
-        Instantiate(impactEffect, transform.position, transform.rotation);
-        Destroy(gameObject);
+//        Instantiate(impactEffect, transform.position, transform.rotation);
+//        Destroy(gameObject);
     }
 }
